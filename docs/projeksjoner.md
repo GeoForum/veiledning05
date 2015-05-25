@@ -1,6 +1,6 @@
 # Projeksjoner
 
-![projection families](img/projection_families.png)
+![projection families](../img/projection_families.png)
 
 ## Kartprojeksjoner og konvertering
 
