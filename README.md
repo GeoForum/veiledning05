@@ -34,18 +34,34 @@ Et geografisk koordinatsystem tar utgangspunkt i et sfærisk element som for eks
 
 Et projisert koordinatsystem gir posisjonen til et punkt på en flat overflate. Samme posisjon i Oslo Sentrum i det projiserte koordinatsystemet "EPSG:25832"/UTM sone 32 vil være "596945.749, 6642871.404" Koordinatene viser avstanden fra et definert nullpunkt i henholdsvis østlig og nordlig retning.
 
-## Hvordan bruker vi data og kart med forskjellige projeksjoner sammen?
+## Hvordan bruke data i et projisert koordinatsystem i et kart som tegnes i "Web Mercator"/"EPSG:3857"?
 
-Men hvordan skal vi bruke data i en annen kartprojeksjon sammen med kartbiblioteker som bruker "Web Mercator"? Da har vi to muligheter:
+Om vi prøver å tegne dataene i kartet direkte vil ikke geometriene havne på rett plass. Dataene må matche kartet. Det betyr at vi har to valg:
 
-1.  Reprojesere bakgrunnskartet brukt av biblioteket til å matche dataene.
-2.  Reprojesere dataene til "Web Mercator".
+1.  Endre bakgrunnskartet til et i en projeksjon som matcher dataene.
+2.  Transformere dataene til et format som kartbiblioteket forstår.
+
+For å transformere dataene må vi vite hvilket koordinatsystem kartbiblioteket forventer koordinater i. Ofte er dette lengde-/breddegrad(EPSG:4326), men det kan være et annet. Se i  dokumentasjonen til biblioteket du bruker om det finnes metoder for å transformere mellom de koordinatsystemene i ditt prosjekt. Eventuelt kan du bruke programvare som:
+
+* [Proj4js](https://github.com/proj4js/proj4js)
+* [FME](https://www.safe.com/fme/)
+* [ArcGIS](https://developers.arcgis.com/javascript/jssamples/util_coordinate_converter.html)
+* [ogr2ogr](http://www.gdal.org/ogr2ogr.html)
+
 
 ## Nyttige tips
 
-*
-*
-*
+* Havner punktet ditt utenfor vestkysten av Afrika? Da har du mest sannsynlig null-verdier i koordinatene, og punktet ligger på ["null island"](http://en.wikipedia.org/wiki/Null_Island).
+* Bruker du en av UTM projeksjonene og dataene dine havner litt feil, men i Norge? Pass på at du bruker riktig UTM-sone! 
+* Du kan bruke [Norgeskart](http://norgeskart.no/) til sjekke posisjonen til punkt i ulike koordinatsystem.
+
+## Linker til nyttige ressurser
+
+* http://communityhub.esriuk.com/journal/2012/3/26/coordinate-systems-and-projections-for-beginners.html
+* http://en.wikipedia.org/wiki/Map_projection
+* http://docs.qgis.org/2.0/en/docs/gentle_gis_introduction/coordinate_reference_systems.html
+* http://www.sharpgis.net/post/2007/05/05/Spatial-references2c-coordinate-systems2c-projections2c-datums2c-ellipsoids-e28093-confusing
+* https://en.wikipedia.org/wiki/Spatial_reference_system
 
 Skrevet for http://www.geoforum.no/om-geforum/prosjekt-innovasjon/
 
